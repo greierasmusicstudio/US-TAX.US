@@ -3,27 +3,23 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>US-TAX.US | Free American Sales Tax Calculator</title>
-    <meta name="description" content="Free US sales tax calculator for all 50 states. Calculate sales tax instantly. Proudly serving Americans since 2024.">
-    <meta name="keywords" content="US tax calculator, sales tax calculator, USA tax, state tax, tax calculation, free tax tool">
+    <title>US-TAX.US | All American Tax Calculators 2025-2026</title>
+    <meta name="description" content="Free US tax calculators: Sales Tax, Income Tax, Property Tax, Car Tax. Calculate all American taxes instantly for 2025-2026.">
     <link rel="stylesheet" href="style.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <!-- Google Analytics (adaugi tu codul tau) -->
-    <!-- <script async src="https://www.googletagmanager.com/gtag/js?id=UA-XXXXXXXXX-X"></script> -->
 </head>
 <body>
-    <!-- 🇺🇸 Header Navigation -->
     <header class="header">
         <div class="container">
             <div class="logo">
                 <h1><i class="fas fa-flag-usa"></i> US-TAX.US</h1>
-                <p>Your American Tax Calculator</p>
+                <p>Complete American Tax Calculators</p>
             </div>
             <nav class="navbar">
-                <a href="index.html" class="active"><i class="fas fa-home"></i> Home</a>
-                <a href="about.html"><i class="fas fa-info-circle"></i> About</a>
-                <a href="blog.html"><i class="fas fa-newspaper"></i> Resources</a>
-                <a href="contact.html"><i class="fas fa-envelope"></i> Contact</a>
+                <a href="#sales" class="active"><i class="fas fa-shopping-cart"></i> Sales Tax</a>
+                <a href="#income"><i class="fas fa-money-bill-wave"></i> Income Tax</a>
+                <a href="#property"><i class="fas fa-home"></i> Property Tax</a>
+                <a href="#car"><i class="fas fa-car"></i> Car Tax</a>
             </nav>
         </div>
     </header>
@@ -31,144 +27,299 @@
     <!-- 🇺🇸 Hero Section -->
     <section class="hero">
         <div class="container">
-            <div class="hero-content">
-                <h2><i class="fas fa-calculator"></i> Free US Sales Tax Calculator</h2>
-                <p class="tagline">Calculate sales tax for all 50 states instantly. No registration required.</p>
-                
-                <div class="calculator-card">
-                    <div class="calculator-header">
-                        <h3><i class="fas fa-united-states"></i> American Tax Calculator</h3>
-                        <p>Enter your purchase details below</p>
-                    </div>
-                    
-                    <div class="calculator-body">
-                        <div class="input-group">
-                            <label for="amount"><i class="fas fa-dollar-sign"></i> Purchase Amount ($)</label>
-                            <input type="number" id="amount" placeholder="100.00" min="0" step="0.01" value="100">
-                        </div>
-                        
-                        <div class="input-group">
-                            <label for="state"><i class="fas fa-map-marker-alt"></i> Select State</label>
-                            <select id="state">
-                                <option value="">-- Choose a state --</option>
-                                <!-- States loaded via JS -->
-                            </select>
-                        </div>
-                        
-                        <button id="calculateBtn" class="calculate-btn">
-                            <i class="fas fa-calculator"></i> Calculate Tax
-                        </button>
-                        
-                        <div class="results" id="results">
-                            <h4><i class="fas fa-file-invoice-dollar"></i> Tax Calculation Results</h4>
-                            <div class="result-row">
-                                <span>Purchase Amount:</span>
-                                <span id="originalPrice">$0.00</span>
-                            </div>
-                            <div class="result-row">
-                                <span>State Tax Rate:</span>
-                                <span id="stateTaxRate">0%</span>
-                            </div>
-                            <div class="result-row">
-                                <span>Tax Amount:</span>
-                                <span id="taxAmount">$0.00</span>
-                            </div>
-                            <div class="result-total">
-                                <span>Total with Tax:</span>
-                                <span id="totalWithTax">$0.00</span>
-                            </div>
-                        </div>
-                    </div>
+            <h2><i class="fas fa-calculator"></i> All US Tax Calculators 2025-2026</h2>
+            <p class="tagline">Calculate Sales Tax, Income Tax, Property Tax, and Car Tax for all 50 states</p>
+            
+            <!-- Calculator Selector -->
+            <div class="calculator-selector">
+                <div class="selector-tabs">
+                    <button class="tab-btn active" data-tab="sales">
+                        <i class="fas fa-shopping-cart"></i> Sales Tax
+                    </button>
+                    <button class="tab-btn" data-tab="income">
+                        <i class="fas fa-money-bill-wave"></i> Income Tax
+                    </button>
+                    <button class="tab-btn" data-tab="property">
+                        <i class="fas fa-home"></i> Property Tax
+                    </button>
+                    <button class="tab-btn" data-tab="car">
+                        <i class="fas fa-car"></i> Car Tax
+                    </button>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- SALES TAX CALCULATOR -->
+    <section id="sales" class="calculator-section active">
+        <div class="container">
+            <h3><i class="fas fa-shopping-cart"></i> Sales Tax Calculator 2025</h3>
+            <p>Calculate sales tax for any purchase in the United States</p>
+            
+            <div class="calculator-card">
+                <div class="input-group">
+                    <label><i class="fas fa-dollar-sign"></i> Purchase Amount ($)</label>
+                    <input type="number" id="salesAmount" placeholder="100.00" min="0" step="0.01" value="100">
                 </div>
                 
-                <div class="features">
-                    <div class="feature">
-                        <i class="fas fa-bolt"></i>
-                        <h4>Instant Calculation</h4>
-                        <p>Get results in seconds</p>
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Select State</label>
+                    <select id="salesState">
+                        <option value="">-- Choose state --</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                </div>
+                
+                <button onclick="calculateSalesTax()" class="calculate-btn">
+                    <i class="fas fa-calculator"></i> Calculate Sales Tax
+                </button>
+                
+                <div class="results" id="salesResults">
+                    <h4><i class="fas fa-receipt"></i> Sales Tax Calculation</h4>
+                    <div class="result-row">
+                        <span>Purchase Amount:</span>
+                        <span id="salesOriginal">$0.00</span>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-lock"></i>
-                        <h4>100% Free</h4>
-                        <p>No hidden fees</p>
+                    <div class="result-row">
+                        <span>State Tax Rate:</span>
+                        <span id="salesStateRate">0%</span>
                     </div>
-                    <div class="feature">
-                        <i class="fas fa-mobile-alt"></i>
-                        <h4>Mobile Friendly</h4>
-                        <p>Works on all devices</p>
+                    <div class="result-row">
+                        <span>Tax Amount:</span>
+                        <span id="salesTaxAmount">$0.00</span>
+                    </div>
+                    <div class="result-total">
+                        <span>Total with Tax:</span>
+                        <span id="salesTotal">$0.00</span>
                     </div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🇺🇸 AdSense Placement 1 -->
+    <!-- INCOME TAX CALCULATOR -->
+    <section id="income" class="calculator-section">
+        <div class="container">
+            <h3><i class="fas fa-money-bill-wave"></i> Income Tax Calculator 2025</h3>
+            <p>Estimate federal and state income tax</p>
+            
+            <div class="calculator-card">
+                <div class="input-group">
+                    <label><i class="fas fa-dollar-sign"></i> Annual Income ($)</label>
+                    <input type="number" id="incomeAmount" placeholder="50000" min="0" step="1000" value="50000">
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Filing Status</label>
+                    <select id="filingStatus">
+                        <option value="single">Single</option>
+                        <option value="married_joint">Married Filing Jointly</option>
+                        <option value="married_separate">Married Filing Separately</option>
+                        <option value="head_household">Head of Household</option>
+                    </select>
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Select State</label>
+                    <select id="incomeState">
+                        <option value="">-- Choose state --</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                </div>
+                
+                <button onclick="calculateIncomeTax()" class="calculate-btn">
+                    <i class="fas fa-calculator"></i> Calculate Income Tax
+                </button>
+                
+                <div class="results" id="incomeResults">
+                    <h4><i class="fas fa-receipt"></i> Income Tax Estimate</h4>
+                    <div class="result-row">
+                        <span>Annual Income:</span>
+                        <span id="incomeOriginal">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Federal Tax:</span>
+                        <span id="federalTax">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>State Tax:</span>
+                        <span id="stateIncomeTax">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Total Tax:</span>
+                        <span id="totalIncomeTax">$0.00</span>
+                    </div>
+                    <div class="result-total">
+                        <span>After-Tax Income:</span>
+                        <span id="netIncome">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- PROPERTY TAX CALCULATOR -->
+    <section id="property" class="calculator-section">
+        <div class="container">
+            <h3><i class="fas fa-home"></i> Property Tax Calculator 2025</h3>
+            <p>Estimate annual property tax for your home</p>
+            
+            <div class="calculator-card">
+                <div class="input-group">
+                    <label><i class="fas fa-dollar-sign"></i> Property Value ($)</label>
+                    <input type="number" id="propertyValue" placeholder="300000" min="0" step="1000" value="300000">
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Select State</label>
+                    <select id="propertyState">
+                        <option value="">-- Choose state --</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                </div>
+                
+                <button onclick="calculatePropertyTax()" class="calculate-btn">
+                    <i class="fas fa-calculator"></i> Calculate Property Tax
+                </button>
+                
+                <div class="results" id="propertyResults">
+                    <h4><i class="fas fa-receipt"></i> Property Tax Estimate</h4>
+                    <div class="result-row">
+                        <span>Property Value:</span>
+                        <span id="propertyOriginal">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Tax Rate (avg):</span>
+                        <span id="propertyTaxRate">0%</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Annual Tax:</span>
+                        <span id="propertyTaxAmount">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Monthly:</span>
+                        <span id="propertyMonthly">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CAR TAX CALCULATOR -->
+    <section id="car" class="calculator-section">
+        <div class="container">
+            <h3><i class="fas fa-car"></i> Car Tax Calculator 2025</h3>
+            <p>Calculate sales tax and registration fees for vehicles</p>
+            
+            <div class="calculator-card">
+                <div class="input-group">
+                    <label><i class="fas fa-dollar-sign"></i> Vehicle Price ($)</label>
+                    <input type="number" id="carPrice" placeholder="25000" min="0" step="1000" value="25000">
+                </div>
+                
+                <div class="input-group">
+                    <label><i class="fas fa-map-marker-alt"></i> Select State</label>
+                    <select id="carState">
+                        <option value="">-- Choose state --</option>
+                        <!-- Loaded via JS -->
+                    </select>
+                </div>
+                
+                <button onclick="calculateCarTax()" class="calculate-btn">
+                    <i class="fas fa-calculator"></i> Calculate Car Tax
+                </button>
+                
+                <div class="results" id="carResults">
+                    <h4><i class="fas fa-receipt"></i> Car Tax & Fees</h4>
+                    <div class="result-row">
+                        <span>Vehicle Price:</span>
+                        <span id="carOriginal">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Sales Tax:</span>
+                        <span id="carSalesTax">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Registration Fee:</span>
+                        <span id="registrationFee">$0.00</span>
+                    </div>
+                    <div class="result-row">
+                        <span>Title Fee:</span>
+                        <span id="titleFee">$0.00</span>
+                    </div>
+                    <div class="result-total">
+                        <span>Total Cost:</span>
+                        <span id="carTotal">$0.00</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- AD SECTION -->
     <section class="ad-section">
         <div class="container">
             <div class="ad-container">
                 <div class="ad-label">Advertisement</div>
                 <div class="ad-placeholder">
-                    <!-- Google AdSense code goes here -->
                     <p>Google AdSense 728x90</p>
-                    <small>This space is for advertisements that help keep this tool free</small>
+                    <small>Ads support free tax calculators</small>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🇺🇸 Content Section -->
-    <section class="content-section">
+    <!-- INFO SECTION -->
+    <section class="info-section">
         <div class="container">
-            <div class="content-grid">
-                <div class="content-card">
-                    <h3><i class="fas fa-graduation-cap"></i> Learn About US Taxes</h3>
-                    <p>Sales tax in the United States is a consumption tax imposed by state and local governments on the sale of goods and services.</p>
-                    <a href="blog.html" class="btn">Read More</a>
+            <h3><i class="fas fa-info-circle"></i> About Our Calculators</h3>
+            <div class="info-grid">
+                <div class="info-card">
+                    <h4><i class="fas fa-chart-line"></i> 2025-2026 Rates</h4>
+                    <p>All calculators use current tax rates for the 2025-2026 fiscal year.</p>
                 </div>
-                <div class="content-card">
-                    <h3><i class="fas fa-question-circle"></i> Why Use Our Calculator?</h3>
-                    <p>Our tool is updated regularly with current tax rates for all 50 states. We provide accurate calculations instantly.</p>
-                    <a href="about.html" class="btn">About Us</a>
+                <div class="info-card">
+                    <h4><i class="fas fa-shield-alt"></i> Privacy First</h4>
+                    <p>No data stored. All calculations happen in your browser.</p>
                 </div>
-                <div class="content-card">
-                    <h3><i class="fas fa-shield-alt"></i> Privacy Focused</h3>
-                    <p>We don't store your personal data. All calculations happen in your browser. Read our <a href="privacy.html">Privacy Policy</a>.</p>
-                    <a href="privacy.html" class="btn">Privacy Policy</a>
+                <div class="info-card">
+                    <h4><i class="fas fa-graduation-cap"></i> Educational Tool</h4>
+                    <p>For estimation only. Consult tax professionals for official calculations.</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- 🇺🇸 Footer -->
+    <!-- FOOTER -->
     <footer class="footer">
         <div class="container">
             <div class="footer-content">
                 <div class="footer-section">
                     <h4><i class="fas fa-flag-usa"></i> US-TAX.US</h4>
-                    <p>Free American tax calculator serving all 50 states.</p>
+                    <p>Complete American Tax Calculators for 2025-2026</p>
+                    <p><i class="fas fa-calendar-alt"></i> Updated: December 2024</p>
                 </div>
                 <div class="footer-section">
-                    <h4>Quick Links</h4>
-                    <a href="index.html">Home</a>
-                    <a href="about.html">About Us</a>
-                    <a href="privacy.html">Privacy Policy</a>
-                    <a href="terms.html">Terms of Service</a>
-                    <a href="contact.html">Contact</a>
+                    <h4>Calculators</h4>
+                    <a href="#sales">Sales Tax Calculator</a>
+                    <a href="#income">Income Tax Calculator</a>
+                    <a href="#property">Property Tax Calculator</a>
+                    <a href="#car">Car Tax Calculator</a>
                 </div>
                 <div class="footer-section">
                     <h4>Legal</h4>
-                    <p>This tool is for informational purposes only. We are not tax professionals.</p>
-                    <p>© 2024 US-TAX.US. All rights reserved.</p>
+                    <a href="privacy.html">Privacy Policy</a>
+                    <a href="terms.html">Terms of Service</a>
+                    <a href="contact.html">Contact</a>
+                    <p>© 2024 US-TAX.US</p>
                 </div>
             </div>
             <div class="footer-bottom">
-                <p>Made with <i class="fas fa-heart" style="color: #e74c3c;"></i> for Americans</p>
-                <p class="disclaimer">Disclaimer: This calculator provides estimates. Actual tax rates may vary by location.</p>
+                <p><i class="fas fa-exclamation-triangle"></i> Disclaimer: Calculators provide estimates only. Not financial advice.</p>
             </div>
         </div>
     </footer>
 
-    <!-- JavaScript -->
     <script src="script.js"></script>
 </body>
 </html>
